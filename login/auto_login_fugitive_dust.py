@@ -54,11 +54,29 @@ def web_login() -> bool:
     # 个人验证
     # 重定向测试
     if r1.status_code == 200:
-        # 持久化cookie
-        # ck = session.cookies.get_dict()
-        ck = session.cookies
         print(ck)
-        # my_cookie.cookie = ck
         return True
     else:
         return False
+
+
+class Login:
+    _token = None
+    _url_1 = None
+    _url_2 = None
+    _request_playload_1 = {
+        "a": "ZHp6d3B0",
+        "allParams": "cC+QXA6lzRK6JXTjS+yCpCXg2UJDTgNW9viPDZ0O0tQMarNhIeFaCk8Jbsicxv7ZKLlX3J80r8ewAT12zsRsk0e3XdHIiSRrJG5bDrQtqQ8T+bazgbxAdeC3jEQDG3k5pFyPUONlyEh1OU2kwKHI8V7mp7RfZpz1DeYDoAtVFcX7bh3fzQs2wEKLjeggMj7fahAX4U3s9JfNl2DQCSGQX4q7iyKnDhf4ok8u8yuv8q3XkvP3k1/vqpZRmQ1v16/KAsKPgDXtrbBq9q8yjNaMOC2Jz1FxBundI7Sip/6J6bOUNHikbGGueW+V5Q9462Dt30IYmjVXupSnK0FfUqxuV3JcZgP6ZPTs",
+    }
+    _request_playload_2 = {
+        "allParams": _token,
+        "a": "ZHp6d3B0",
+        "needLogin": "true",
+        "user.account": "zhangxiaowei",
+        "user.password": "a1de872a313c7dc91cf428d5ebb5d749",
+        "timestamp": "",
+    }
+
+    def __init__(self, url_1, url_2):
+        self._url_1 = url_1
+        self.u
