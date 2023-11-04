@@ -1,3 +1,3 @@
 class C:
-  def __init__():
-    print("测试下fetch功能")
+    def __init__(self):
+        print("测试下fetch功能")
