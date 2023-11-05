@@ -8,4 +8,9 @@ def best(oder):
     return max((item) for item in oder)
 
 
+def test_if(value):
+    return value if value > 2 else 1
+
+
 print(best(a))
+print(test_if(12))
