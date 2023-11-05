@@ -1,9 +1,12 @@
 """装饰器"""
+import functools
+import time
 
 
 def re_add(func):
     print("装饰器add运行了")
 
+    @functools.wraps(func)
     def decorate(*args, **kwargs):
         for i in range(4):
             func()
@@ -55,14 +58,54 @@ def avg_1():
     return cal_avg
 
 
+def clock(func):
+    @functools.wraps(func)
+    def clocked(*args, **kwargs):
+        t0 = time.time()
+        result = func(*args, **kwargs)
+        elapsed = time.time() - t0
+        name = func.__name__
+        arg_lst = []
+        if args:
+            arg_lst.append(", ".join(repr(arg) for arg in args))
+        if kwargs:
+            pairs = ["%s=%r" % (k, w) for k, w in sorted(kwargs.items())]
+            arg_lst.append(", ".join(pairs))
+        arg_str = ", ".join(arg_lst)
+        print("[%0.8fs]%s(%s)->%r " % (elapsed, name, arg_str, result))
+        return result
+
+    return clocked
+
+
+@clock
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 2) + fibonacci(n - 1)
+
+
+@functools.lru_cache(maxsize=128)
+@clock
+def fibonacci_1(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 2) + fibonacci(n - 1)
+
+
 if __name__ == "__main__":
     # a = avg()
     # print(a(4))
     # print(a(5))
     # print(a(6))
 
-    b = avg_1()
-    print(b(1))
-    print(b(2))
-    print(b(3))
-    print(b(4))
+    # b = avg_1()
+    # print(b(1))
+    # print(b(2))
+    # print(b(3))
+    # print(b(4))
+
+    # a = add
+    # print(a.__name__)
+    # print(fibonacci(30))
+    print(fibonacci_1(30))
