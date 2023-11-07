@@ -3,8 +3,8 @@ import os
 from github import Github
 
 repo_user = "zhang-man-mcm"  # 改为你的GitHub用户名
-repo_name = "day_cache3"  # 改为你的仓库名称
-access_token = "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"  # 改为你的个人访问令牌
+repo_name = "day_cache4"  # 改为你的仓库名称
+access_token = "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"  # 改为你的个人访问令牌
 
 # 指定要上传的文件夹路径
 folder_path = r"C:\Users\19125\Desktop\10月-天钥桥-简报-11.6做好"  # 改为你要上传的文件夹路径
@@ -36,4 +36,7 @@ os.system('git commit -m "Initial commit"')
 os.system(f"git remote add origin git@github.com:/{repo_user}/{repo_name}.git")
 os.system("git push -u origin master")
 
+print("文件上传完成！")
+print("文件上传完成！")
+print("文件上传完成！")
 print("文件上传完成！")
